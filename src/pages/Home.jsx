@@ -5,7 +5,6 @@ import ActionButtons from '../components/ActionButtons';
 import MatchOverlay from '../components/MatchOverlay';
 import TinderLogo from '../components/TinderLogo';
 import { useApp } from '../context/AppContext';
-import { MapPin, Briefcase, GraduationCap } from 'lucide-react';
 
 const ME_AVATAR = 'https://picsum.photos/200/200?random=99';
 
@@ -71,66 +70,6 @@ export default function Home() {
           />
         </div>
       </section>
-
-      {/* Right panel: top card preview (desktop only) */}
-      <aside className="hidden lg:flex w-[360px] xl:w-[400px] shrink-0 border-l border-gray-200 bg-white flex-col overflow-y-auto">
-        {top ? (
-          <>
-            <div className="relative w-full aspect-[3/4]">
-              <img src={top.photos[0]} alt={top.name} className="w-full h-full object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-5 text-white">
-                <div className="flex items-baseline gap-2">
-                  <h2 className="text-3xl font-bold">{top.name}</h2>
-                  <span className="text-2xl font-light">{top.age}</span>
-                </div>
-              </div>
-            </div>
-            <div className="p-5 space-y-4">
-              <div>
-                <h3 className="text-xs font-bold uppercase tracking-wider text-tinder-muted mb-1">About</h3>
-                <p className="text-[15px] leading-relaxed">{top.bio}</p>
-              </div>
-              <div className="space-y-2 text-[14px]">
-                <div className="flex items-center gap-2 text-tinder-text">
-                  <Briefcase size={16} className="text-tinder-muted" />
-                  {top.job}
-                </div>
-                <div className="flex items-center gap-2 text-tinder-text">
-                  <GraduationCap size={16} className="text-tinder-muted" />
-                  {top.school}
-                </div>
-                <div className="flex items-center gap-2 text-tinder-text">
-                  <MapPin size={16} className="text-tinder-muted" />
-                  {top.distance}
-                </div>
-              </div>
-              <div>
-                <h3 className="text-xs font-bold uppercase tracking-wider text-tinder-muted mb-2">Interests</h3>
-                <div className="flex flex-wrap gap-2">
-                  {top.interests?.map((tag) => (
-                    <span key={tag} className="px-3 py-1 rounded-full border border-gray-300 text-[13px] font-medium">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-              <div>
-                <h3 className="text-xs font-bold uppercase tracking-wider text-tinder-muted mb-2">Photos</h3>
-                <div className="grid grid-cols-2 gap-2">
-                  {top.photos.map((p, i) => (
-                    <img key={i} src={p} alt="" className="w-full aspect-square object-cover rounded-lg" />
-                  ))}
-                </div>
-              </div>
-            </div>
-          </>
-        ) : (
-          <div className="flex-1 flex items-center justify-center text-tinder-muted text-sm">
-            No more cards
-          </div>
-        )}
-      </aside>
 
       <MatchOverlay
         key={matchKey}
