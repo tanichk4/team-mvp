@@ -1,0 +1,60 @@
+/* ============================================================
+   Obsidian Animations
+   ============================================================ */
+
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(20px) scale(0.96); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes heartBurst {
+  0%   { transform: scale(0); opacity: 0; }
+  60%  { transform: scale(1.3); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+
+@keyframes obsidianPulse {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.3); }
+}
+
+@keyframes navTap {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(0.85); }
+  100% { transform: scale(1); }
+}
+
+@keyframes matchTitleGlow {
+  0%, 100% { filter: drop-shadow(0 0 12px rgba(253, 38, 122, 0.5)); }
+  50%      { filter: drop-shadow(0 0 24px rgba(255, 96, 54, 0.8)); }
+}
+
+.animate-card-in {
+  animation: cardIn 400ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.animate-heart-burst {
+  animation: heartBurst 600ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.animate-shimmer {
+  background-size: 200% auto;
+  animation: shimmer 3s linear infinite;
+}
+
+.animate-obsidian-pulse {
+  animation: obsidianPulse 1.5s ease-in-out infinite;
+}
+
+.animate-nav-tap {
+  animation: navTap 300ms ease;
+}
+
+.animate-match-glow {
+  animation: matchTitleGlow 2.4s ease-in-out infinite;
+}

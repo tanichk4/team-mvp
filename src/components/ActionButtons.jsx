@@ -1,22 +1,24 @@
 import { RotateCcw, X, Star, Heart, Zap } from 'lucide-react';
-import { cn } from '../lib/cn';
 
-function ActionButton({ onClick, size = 'md', color, children, ariaLabel }) {
-  const sizes = {
-    sm: 'w-12 h-12',
-    md: 'w-14 h-14',
-    lg: 'w-16 h-16',
-  };
+function ActionButton({ onClick, size, color, children, ariaLabel }) {
+  const px = size === 'lg' ? 56 : 44;
   return (
     <button
       type="button"
       onClick={onClick}
       aria-label={ariaLabel}
-      className={cn(
-        'rounded-full bg-white flex items-center justify-center shrink-0 transition-transform active:scale-90 hover:scale-105',
-        sizes[size]
-      )}
-      style={{ boxShadow: 'var(--shadow-fab)', color }}
+      className="rounded-full bg-surface-card flex items-center justify-center shrink-0 transition-transform active:scale-95 hover:scale-110"
+      style={{
+        width: px,
+        height: px,
+        borderWidth: 2,
+        borderStyle: 'solid',
+        borderColor: color,
+        color,
+        boxShadow: 'var(--shadow-action-btn)',
+        transitionTimingFunction: 'cubic-bezier(0.34, 1.56, 0.64, 1)',
+        transitionDuration: '300ms',
+      }}
     >
       {children}
     </button>
@@ -26,20 +28,20 @@ function ActionButton({ onClick, size = 'md', color, children, ariaLabel }) {
 export default function ActionButtons({ onRewind, onNope, onSuperLike, onLike, onBoost }) {
   return (
     <div className="flex items-center justify-center gap-3 sm:gap-4">
-      <ActionButton onClick={onRewind} size="sm" color="#F5B800" ariaLabel="Rewind">
-        <RotateCcw size={22} strokeWidth={3} />
+      <ActionButton onClick={onRewind} size="sm" color="var(--color-rewind)" ariaLabel="Rewind">
+        <RotateCcw size={20} strokeWidth={2.5} />
       </ActionButton>
-      <ActionButton onClick={onNope} size="md" color="#FF3B6F" ariaLabel="Nope">
-        <X size={32} strokeWidth={3} />
+      <ActionButton onClick={onNope} size="lg" color="var(--color-nope)" ariaLabel="Nope">
+        <X size={28} strokeWidth={2.5} />
       </ActionButton>
-      <ActionButton onClick={onSuperLike} size="sm" color="#1EC9F0" ariaLabel="Super Like">
-        <Star size={22} strokeWidth={3} fill="#1EC9F0" />
+      <ActionButton onClick={onSuperLike} size="sm" color="var(--color-superlike)" ariaLabel="Super Like">
+        <Star size={20} strokeWidth={2.5} />
       </ActionButton>
-      <ActionButton onClick={onLike} size="md" color="#1ED760" ariaLabel="Like">
-        <Heart size={30} strokeWidth={3} fill="#1ED760" />
+      <ActionButton onClick={onLike} size="lg" color="var(--color-like)" ariaLabel="Like">
+        <Heart size={26} strokeWidth={2.5} />
       </ActionButton>
-      <ActionButton onClick={onBoost} size="sm" color="#9333EA" ariaLabel="Boost">
-        <Zap size={22} strokeWidth={3} fill="#9333EA" />
+      <ActionButton onClick={onBoost} size="sm" color="var(--color-boost)" ariaLabel="Boost">
+        <Zap size={20} strokeWidth={2.5} />
       </ActionButton>
     </div>
   );

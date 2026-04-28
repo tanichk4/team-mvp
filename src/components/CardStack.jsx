@@ -26,7 +26,10 @@ export default function CardStack({ deck, onSwipe }) {
       </AnimatePresence>
 
       {deck.length === 0 && (
-        <div className="absolute inset-0 flex items-center justify-center text-tinder-muted text-center px-6">
+        <div
+          className="absolute inset-0 flex items-center justify-center text-center px-6"
+          style={{ color: 'var(--color-text-secondary)' }}
+        >
           <p>You're all caught up.<br />Check back later for new people.</p>
         </div>
       )}
