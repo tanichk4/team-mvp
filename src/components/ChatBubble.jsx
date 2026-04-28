@@ -5,12 +5,15 @@ export default function ChatBubble({ text, sender }) {
   return (
     <div className={cn('flex w-full', isMe ? 'justify-end' : 'justify-start')}>
       <div
-        className={cn(
-          'max-w-[75%] px-4 py-2.5 text-[15px] leading-snug',
-          isMe
-            ? 'bg-tinder-gradient text-white rounded-2xl rounded-br-md'
-            : 'bg-chat-bubble text-white rounded-2xl rounded-bl-md'
-        )}
+        className="max-w-[72%]"
+        style={{
+          padding: '10px 14px',
+          fontSize: 'var(--font-size-base)',
+          lineHeight: 'var(--line-height-normal)',
+          borderRadius: isMe ? '20px 20px 4px 20px' : '20px 20px 20px 4px',
+          background: isMe ? 'var(--gradient-brand)' : 'var(--color-bg-tertiary)',
+          color: isMe ? 'var(--color-text-on-brand)' : 'var(--color-text-primary)',
+        }}
       >
         {text}
       </div>

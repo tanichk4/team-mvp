@@ -8,7 +8,10 @@ export default function App() {
   const hideBottomNav = isChat;
 
   return (
-    <div className="min-h-screen flex bg-tinder-bg">
+    <div
+      className="min-h-screen flex"
+      style={{ backgroundColor: 'var(--color-bg-primary)', color: 'var(--color-text-primary)' }}
+    >
       <SidebarNav />
 
       <main className={`flex-1 min-w-0 flex justify-center ${hideBottomNav ? '' : 'pb-16 md:pb-0'}`}>

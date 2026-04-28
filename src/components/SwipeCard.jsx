@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, useMotionValue, useTransform, useAnimation } from 'framer-motion';
-import { MapPin } from 'lucide-react';
+import { MapPin, BadgeCheck } from 'lucide-react';
 
 export default function SwipeCard({ profile, onSwipe, isTop, stackIndex = 0 }) {
   const [photoIdx, setPhotoIdx] = useState(0);
@@ -47,12 +47,12 @@ export default function SwipeCard({ profile, onSwipe, isTop, stackIndex = 0 }) {
       style={{ x, rotate }}
       initial={{ scale, y: offsetY }}
       whileTap={isTop ? { cursor: 'grabbing' } : undefined}
-      className="absolute inset-0 select-none"
+      className="absolute inset-0 select-none animate-card-in"
     >
       <div
-        className="relative w-full h-full overflow-hidden bg-white"
+        className="relative w-full h-full overflow-hidden bg-surface-card"
         style={{
-          borderRadius: 'var(--radius-card)',
+          borderRadius: 'var(--radius-xl)',
           boxShadow: 'var(--shadow-card)',
         }}
         onClick={isTop ? tapPhoto : undefined}
@@ -75,19 +75,30 @@ export default function SwipeCard({ profile, onSwipe, isTop, stackIndex = 0 }) {
           </div>
         )}
 
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent pointer-events-none" />
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{ background: 'var(--gradient-card-overlay)' }}
+        />
 
         {isTop && (
           <>
             <motion.div
-              style={{ opacity: likeOpacity }}
-              className="absolute top-8 left-6 px-3 py-1.5 border-[3px] border-emerald-400 rounded-md text-emerald-400 text-3xl font-extrabold tracking-widest -rotate-12 pointer-events-none"
+              style={{
+                opacity: likeOpacity,
+                color: 'var(--color-like)',
+                borderColor: 'var(--color-like)',
+              }}
+              className="absolute top-8 left-6 px-3 py-1.5 border-[3px] rounded-md text-3xl font-extrabold tracking-widest -rotate-12 pointer-events-none"
             >
               LIKE
             </motion.div>
             <motion.div
-              style={{ opacity: nopeOpacity }}
-              className="absolute top-8 right-6 px-3 py-1.5 border-[3px] border-rose-500 rounded-md text-rose-500 text-3xl font-extrabold tracking-widest rotate-12 pointer-events-none"
+              style={{
+                opacity: nopeOpacity,
+                color: 'var(--color-nope)',
+                borderColor: 'var(--color-nope)',
+              }}
+              className="absolute top-8 right-6 px-3 py-1.5 border-[3px] rounded-md text-3xl font-extrabold tracking-widest rotate-12 pointer-events-none"
             >
               NOPE
             </motion.div>
@@ -96,14 +107,53 @@ export default function SwipeCard({ profile, onSwipe, isTop, stackIndex = 0 }) {
 
         <div className="absolute bottom-0 left-0 right-0 p-5 text-white pointer-events-none">
           <div className="flex items-baseline gap-2">
-            <h2 className="text-3xl font-bold">{profile.name}</h2>
-            <span className="text-2xl font-light">{profile.age}</span>
+            <h2
+              className="font-extrabold"
+              style={{
+                fontSize: 'var(--font-size-2xl)',
+                letterSpacing: 'var(--letter-spacing-tight)',
+              }}
+            >
+              {profile.name}
+            </h2>
+            <span className="font-regular" style={{ fontSize: 'var(--font-size-xl)' }}>
+              {profile.age}
+            </span>
+            {profile.verified !== false && (
+              <BadgeCheck size={18} style={{ color: 'var(--color-superlike)' }} fill="white" />
+            )}
           </div>
-          <div className="flex items-center gap-1.5 mt-1 text-sm text-white/85">
-            <MapPin size={14} />
-            <span>{profile.distance}</span>
+          <div className="mt-2 flex items-center gap-2">
+            <span
+              className="frosted-pill inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-white"
+              style={{ fontSize: 'var(--font-size-sm)' }}
+            >
+              <MapPin size={12} />
+              {profile.distance}
+            </span>
           </div>
-          <p className="mt-2 text-sm text-white/90 line-clamp-2 leading-snug">{profile.bio}</p>
+          <p
+            className="mt-2 line-clamp-2 leading-snug"
+            style={{
+              fontSize: 'var(--font-size-base)',
+              color: 'rgba(255,255,255,0.9)',
+            }}
+          >
+            {profile.bio}
+          </p>
+          {profile.interests?.length > 0 && (
+            <div className="mt-3 flex flex-wrap gap-1.5">
+              {profile.interests.slice(0, 3).map((tag) => (
+                <span
+                  key={tag}
+                  className="frosted-pill px-2.5 py-1 rounded-full text-white font-medium"
+                  style={{ fontSize: 'var(--font-size-xs)' }}
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </motion.div>
