@@ -84,7 +84,7 @@ export default function Profile() {
       </div>
 
       <div className="mx-4 mt-5 flex flex-wrap gap-2">
-        {[ME.distance, `${ME.age}`, ME.job].map((label) => (
+        {[me.distance, `${me.age}`, me.job].map((label) => (
           <span
             key={label}
             className="font-medium"
