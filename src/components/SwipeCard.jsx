@@ -60,7 +60,11 @@ export default function SwipeCard({ profile, onSwipe, isTop, stackIndex = 0 }) {
         <img
           src={profile.photos[photoIdx]}
           alt={profile.name}
-          className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+          loading={isTop ? 'eager' : 'lazy'}
+          onError={(e) => {
+            e.currentTarget.style.visibility = 'hidden';
+          }}
+          className="absolute inset-0 w-full h-full object-cover pointer-events-none bg-gradient-to-br from-tinder-pink to-tinder-orange"
           draggable={false}
         />
 

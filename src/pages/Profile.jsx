@@ -1,15 +1,6 @@
-import { Settings, Bell, Shield, HelpCircle, LogOut, ChevronRight, Plus, Pencil, Moon, Crown } from 'lucide-react';
-import { useTheme } from '../context/ThemeContext';
-
-const ME = {
-  name: 'Tanya',
-  age: 27,
-  photo: 'https://picsum.photos/600/800?random=99',
-  job: 'Product Manager',
-  distance: '2 km away',
-  completeness: 65,
-  bio: 'PM by day, swiping for product insights by night.',
-};
+import { Settings, Bell, Shield, HelpCircle, LogOut, ChevronRight, Plus, Pencil } from 'lucide-react';
+import { useApp } from '../context/AppContext';
+import Avatar from '../components/Avatar';
 
 const settingsRows = [
   { Icon: Settings, label: 'Discovery Settings', sub: 'Distance, age, who to show' },
@@ -58,20 +49,19 @@ function SectionHeader({ children }) {
 }
 
 export default function Profile() {
-  const { theme, toggle } = useTheme();
-  const isDark = theme === 'dark';
+  const { me } = useApp();
 
   return (
     <div className="w-full max-w-2xl mx-auto pb-6">
-      <div
-        className="relative w-full overflow-hidden md:rounded-b-3xl"
-        style={{ height: 420 }}
-      >
-        <img src={ME.photo} alt={ME.name} className="absolute inset-0 w-full h-full object-cover" />
-        <div
-          className="absolute inset-0"
-          style={{ background: 'var(--gradient-card-overlay)' }}
+      {/* Hero */}
+      <div className="relative w-full aspect-[4/5] md:aspect-[16/9] md:rounded-b-3xl overflow-hidden">
+        <Avatar
+          src={me.photo}
+          name={me.name}
+          loading="eager"
+          className="absolute inset-0 w-full h-full object-cover"
         />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
         <button
           aria-label="Edit profile"
           className="absolute top-4 right-4 rounded-full flex items-center justify-center text-white"
@@ -86,26 +76,10 @@ export default function Profile() {
         </button>
         <div className="absolute bottom-0 left-0 right-0 p-5 text-white">
           <div className="flex items-baseline gap-2">
-            <h1
-              className="font-extrabold"
-              style={{
-                fontSize: 'var(--font-size-2xl)',
-                letterSpacing: 'var(--letter-spacing-tight)',
-              }}
-            >
-              {ME.name}
-            </h1>
-            <span style={{ fontSize: 'var(--font-size-xl)' }}>{ME.age}</span>
+            <h1 className="text-3xl font-bold">{me.name}</h1>
+            <span className="text-2xl font-light">{me.age}</span>
           </div>
-          <p
-            className="mt-1"
-            style={{
-              fontSize: 'var(--font-size-base)',
-              color: 'rgba(255,255,255,0.92)',
-            }}
-          >
-            {ME.bio}
-          </p>
+          <p className="text-sm text-white/85 mt-1">{me.bio}</p>
         </div>
       </div>
 
@@ -152,15 +126,8 @@ export default function Profile() {
         }}
       >
         <div className="flex items-center justify-between mb-2">
-          <p className="font-semibold" style={{ fontSize: 'var(--font-size-sm)' }}>
-            Profile completeness
-          </p>
-          <span
-            className="text-brand-gradient font-extrabold"
-            style={{ fontSize: 'var(--font-size-sm)' }}
-          >
-            {ME.completeness}%
-          </span>
+          <p className="font-semibold text-[14px]">Profile completeness</p>
+          <span className="text-[14px] font-bold text-tinder-pink">{me.completeness}%</span>
         </div>
         <div
           className="w-full overflow-hidden"
@@ -171,12 +138,8 @@ export default function Profile() {
           }}
         >
           <div
-            className="h-full"
-            style={{
-              width: `${ME.completeness}%`,
-              borderRadius: 'var(--radius-pill)',
-              background: 'var(--gradient-brand)',
-            }}
+            className="h-full bg-tinder-gradient rounded-full"
+            style={{ width: `${me.completeness}%` }}
           />
         </div>
         <p
@@ -244,8 +207,12 @@ export default function Profile() {
             >
               <img
                 src={`https://picsum.photos/200/300?random=10${i}`}
-                alt=""
-                className="w-full h-full object-cover"
+                alt={`${me.name}'s photo ${i}`}
+                loading="lazy"
+                onError={(e) => {
+                  e.currentTarget.style.visibility = 'hidden';
+                }}
+                className="w-full h-full object-cover bg-gradient-to-br from-tinder-pink to-tinder-orange"
               />
             </div>
           ))}

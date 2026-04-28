@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Search, Sparkles } from 'lucide-react';
 import { useApp } from '../context/AppContext';
+import Avatar from '../components/Avatar';
 
 function formatTimestamp(ts) {
   const diff = Date.now() - ts;
@@ -53,19 +54,11 @@ export default function Messages() {
               className="shrink-0 flex flex-col items-center gap-1.5"
               style={{ width: 64 }}
             >
-              <div
-                className="rounded-full p-[2px]"
-                style={{
-                  width: 64,
-                  height: 64,
-                  background: unread[m.id] ? 'var(--gradient-brand)' : 'transparent',
-                }}
-              >
-                <img
+              <div className={`w-[72px] h-[72px] rounded-full p-[2px] ${unread[m.id] ? 'bg-tinder-gradient' : 'bg-transparent'}`}>
+                <Avatar
                   src={m.photos[0]}
-                  alt={m.name}
-                  className="w-full h-full rounded-full object-cover"
-                  style={{ border: '2px solid var(--color-surface-card)' }}
+                  name={m.name}
+                  className="w-full h-full rounded-full object-cover border-2 border-white"
                 />
               </div>
               <span
@@ -123,38 +116,13 @@ export default function Messages() {
             const last = convo[convo.length - 1];
             const isUnread = unread[m.id];
             return (
-              <li
-                key={m.id}
-                style={
-                  idx > 0
-                    ? { borderTop: '1px solid var(--color-border-light)', marginLeft: 66 }
-                    : undefined
-                }
-              >
-                <Link
-                  to={`/messages/${m.id}`}
-                  className="flex items-center gap-3 py-3 active:opacity-80"
-                  style={idx > 0 ? { marginLeft: -66, paddingLeft: 0 } : undefined}
-                >
-                  <div className="relative shrink-0" style={{ marginLeft: idx > 0 ? 66 : 0 }}>
-                    <img
-                      src={m.photos[0]}
-                      alt={m.name}
-                      className="rounded-full object-cover"
-                      style={{ width: 54, height: 54 }}
-                    />
-                    {idx % 2 === 0 && (
-                      <span
-                        className="absolute bottom-0 right-0 rounded-full"
-                        style={{
-                          width: 12,
-                          height: 12,
-                          background: 'var(--color-like)',
-                          border: '2px solid var(--color-surface-card)',
-                        }}
-                      />
-                    )}
-                  </div>
+              <li key={m.id}>
+                <Link to={`/messages/${m.id}`} className="flex items-center gap-3 py-3 active:bg-gray-50">
+                  <Avatar
+                    src={m.photos[0]}
+                    name={m.name}
+                    className="w-14 h-14 rounded-full object-cover shrink-0"
+                  />
                   <div className="flex-1 min-w-0">
                     <div className="flex items-baseline justify-between gap-2">
                       <span

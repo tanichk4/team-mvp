@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AppProvider } from './context/AppContext';
-import { ThemeProvider } from './context/ThemeContext';
+import ErrorBoundary from './components/ErrorBoundary';
 import App from './App';
 import Home from './pages/Home';
 import Likes from './pages/Likes';
@@ -13,7 +13,7 @@ import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <ThemeProvider>
+    <ErrorBoundary>
       <AppProvider>
         <BrowserRouter basename={import.meta.env.BASE_URL}>
           <Routes>
@@ -27,6 +27,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           </Routes>
         </BrowserRouter>
       </AppProvider>
-    </ThemeProvider>
+    </ErrorBoundary>
   </React.StrictMode>
 );

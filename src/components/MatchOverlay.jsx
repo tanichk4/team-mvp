@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { Heart } from 'lucide-react';
+import Avatar from './Avatar';
 
 export default function MatchOverlay({ profile, me, open, onClose }) {
   const navigate = useNavigate();
@@ -57,34 +57,18 @@ export default function MatchOverlay({ profile, me, open, onClose }) {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.15, type: 'spring', stiffness: 200, damping: 18 }}
             >
-              <img
+              <Avatar
                 src={me}
+                name="You"
                 alt="you"
-                className="w-[100px] h-[100px] rounded-full object-cover -rotate-6"
-                style={{
-                  border: '3px solid var(--color-white)',
-                  boxShadow: 'var(--shadow-modal)',
-                }}
+                loading="eager"
+                className="w-32 h-32 rounded-full object-cover border-4 border-white shadow-xl -rotate-6"
               />
-              <div
-                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 animate-heart-burst rounded-full flex items-center justify-center"
-                style={{
-                  width: 56,
-                  height: 56,
-                  background: 'var(--gradient-brand)',
-                  boxShadow: '0 0 40px rgba(253, 38, 122, 0.6)',
-                }}
-              >
-                <Heart size={28} fill="white" strokeWidth={0} />
-              </div>
-              <img
+              <Avatar
                 src={profile.photos[0]}
-                alt={profile.name}
-                className="w-[100px] h-[100px] rounded-full object-cover rotate-6"
-                style={{
-                  border: '3px solid var(--color-white)',
-                  boxShadow: 'var(--shadow-modal)',
-                }}
+                name={profile.name}
+                loading="eager"
+                className="w-32 h-32 rounded-full object-cover border-4 border-white shadow-xl rotate-6"
               />
             </motion.div>
 
