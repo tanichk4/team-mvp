@@ -1,4 +1,4 @@
-import { Settings, Bell, Shield, HelpCircle, LogOut, ChevronRight, Plus, Pencil } from 'lucide-react';
+import { Settings, Bell, Shield, HelpCircle, LogOut, ChevronRight, Plus, Pencil, Crown, Moon } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import Avatar from '../components/Avatar';
 
