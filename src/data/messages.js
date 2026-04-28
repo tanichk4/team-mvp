@@ -1,0 +1,43 @@
+const seedMessages = {
+  1: [
+    { id: 1, text: 'hey! you said you hike — what\'s your favorite trail?', sender: 'them', ts: Date.now() - 1000 * 60 * 60 * 24 * 2 },
+    { id: 2, text: 'omg hi! breakneck ridge is my obsession lately', sender: 'me', ts: Date.now() - 1000 * 60 * 60 * 24 * 2 + 60000 },
+    { id: 3, text: 'okay you have great taste already', sender: 'them', ts: Date.now() - 1000 * 60 * 60 * 24 * 2 + 90000 },
+    { id: 4, text: 'haha thanks 😊 you?', sender: 'me', ts: Date.now() - 1000 * 60 * 60 * 24 * 2 + 120000 },
+    { id: 5, text: 'bear mountain mostly, but i\'ve been wanting to do breakneck', sender: 'them', ts: Date.now() - 1000 * 60 * 60 * 24 + 60000 },
+    { id: 6, text: 'we should go!', sender: 'them', ts: Date.now() - 1000 * 60 * 60 * 24 + 90000 },
+    { id: 7, text: 'i\'m down. saturday?', sender: 'me', ts: Date.now() - 1000 * 60 * 60 * 6 },
+    { id: 8, text: 'saturday works! 9am too early?', sender: 'them', ts: Date.now() - 1000 * 60 * 60 * 5 },
+    { id: 9, text: 'perfect actually, i\'ll bring coffee ☕', sender: 'me', ts: Date.now() - 1000 * 60 * 60 * 4 },
+    { id: 10, text: 'okay this is shaping up to be a great date', sender: 'them', ts: Date.now() - 1000 * 60 * 30 },
+    { id: 11, text: 'is it a date now? 👀', sender: 'me', ts: Date.now() - 1000 * 60 * 25 },
+  ],
+  2: [
+    { id: 1, text: 'hey, i see you climb! gunks or red river?', sender: 'me', ts: Date.now() - 1000 * 60 * 60 * 24 * 3 },
+    { id: 2, text: 'gunks all day. you?', sender: 'them', ts: Date.now() - 1000 * 60 * 60 * 24 * 3 + 30000 },
+    { id: 3, text: 'just started, mostly gym climbing right now', sender: 'me', ts: Date.now() - 1000 * 60 * 60 * 24 * 3 + 60000 },
+    { id: 4, text: 'nice! what gym?', sender: 'them', ts: Date.now() - 1000 * 60 * 60 * 24 * 3 + 90000 },
+    { id: 5, text: 'brooklyn boulders dumbo', sender: 'me', ts: Date.now() - 1000 * 60 * 60 * 24 * 2 },
+    { id: 6, text: 'oh i\'m there all the time, we should climb sometime', sender: 'them', ts: Date.now() - 1000 * 60 * 60 * 24 * 2 + 60000 },
+    { id: 7, text: 'i\'d love that, but fair warning i\'m bad', sender: 'me', ts: Date.now() - 1000 * 60 * 60 * 24 + 60000 },
+    { id: 8, text: 'i\'ll teach you, no judgement 😄', sender: 'them', ts: Date.now() - 1000 * 60 * 60 * 24 + 90000 },
+    { id: 9, text: 'okay deal. tuesday after work?', sender: 'me', ts: Date.now() - 1000 * 60 * 60 * 8 },
+    { id: 10, text: 'tuesday works. 7pm?', sender: 'them', ts: Date.now() - 1000 * 60 * 60 * 2 },
+  ],
+  3: [
+    { id: 1, text: 'late night ramen — please tell me you know about totto', sender: 'me', ts: Date.now() - 1000 * 60 * 60 * 24 * 5 },
+    { id: 2, text: 'OBVIOUSLY. i\'ve been there twice this week alone', sender: 'them', ts: Date.now() - 1000 * 60 * 60 * 24 * 5 + 60000 },
+    { id: 3, text: 'you\'re my person', sender: 'me', ts: Date.now() - 1000 * 60 * 60 * 24 * 5 + 90000 },
+    { id: 4, text: 'haha okay slow down 😂', sender: 'them', ts: Date.now() - 1000 * 60 * 60 * 24 * 5 + 120000 },
+    { id: 5, text: 'sorry sorry. but the spicy miso?', sender: 'me', ts: Date.now() - 1000 * 60 * 60 * 24 * 4 },
+    { id: 6, text: 'top 3 ramen in the city, easy', sender: 'them', ts: Date.now() - 1000 * 60 * 60 * 24 * 4 + 30000 },
+    { id: 7, text: 'what\'s 1 and 2', sender: 'me', ts: Date.now() - 1000 * 60 * 60 * 24 * 4 + 60000 },
+    { id: 8, text: 'ichiran (don\'t @ me) and ippudo east village', sender: 'them', ts: Date.now() - 1000 * 60 * 60 * 24 * 3 },
+    { id: 9, text: 'controversial but i\'ll allow it', sender: 'me', ts: Date.now() - 1000 * 60 * 60 * 24 * 3 + 30000 },
+    { id: 10, text: 'we should ramen tour. i have a list.', sender: 'them', ts: Date.now() - 1000 * 60 * 60 * 24 + 60000 },
+    { id: 11, text: 'send the list. i\'m IN.', sender: 'me', ts: Date.now() - 1000 * 60 * 60 },
+    { id: 12, text: 'incoming...', sender: 'them', ts: Date.now() - 1000 * 60 * 45 },
+  ],
+};
+
+export default seedMessages;
