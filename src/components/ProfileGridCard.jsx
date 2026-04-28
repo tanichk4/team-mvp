@@ -9,7 +9,11 @@ export default function ProfileGridCard({ profile, blurred = false }) {
       <img
         src={profile.photos[0]}
         alt={profile.name}
-        className="absolute inset-0 w-full h-full object-cover"
+        loading="lazy"
+        onError={(e) => {
+          e.currentTarget.style.visibility = 'hidden';
+        }}
+        className="absolute inset-0 w-full h-full object-cover bg-gradient-to-br from-tinder-pink to-tinder-orange"
         style={blurred ? { filter: 'blur(18px)', transform: 'scale(1.1)' } : undefined}
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />

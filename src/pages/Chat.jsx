@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { ArrowLeft, Video, Info, Smile, Image as ImageIcon, Send } from 'lucide-react';
 import ChatBubble from '../components/ChatBubble';
+import Avatar from '../components/Avatar';
 import { useApp } from '../context/AppContext';
 import profiles from '../data/profiles';
 
@@ -16,8 +17,12 @@ export default function Chat() {
   const scrollRef = useRef(null);
 
   useEffect(() => {
+    if (!profile) {
+      navigate('/messages', { replace: true });
+      return;
+    }
     markRead(matchId);
-  }, [matchId, markRead]);
+  }, [profile, matchId, markRead, navigate]);
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -25,13 +30,7 @@ export default function Chat() {
     }
   }, [convo.length]);
 
-  if (!profile) {
-    return (
-      <div className="flex items-center justify-center h-screen text-tinder-muted">
-        Conversation not found
-      </div>
-    );
-  }
+  if (!profile) return null;
 
   const handleSend = () => {
     if (!text.trim()) return;
@@ -50,7 +49,7 @@ export default function Chat() {
         >
           <ArrowLeft size={24} />
         </button>
-        <img src={profile.photos[0]} alt={profile.name} className="w-10 h-10 rounded-full object-cover" />
+        <Avatar src={profile.photos[0]} name={profile.name} className="w-10 h-10 rounded-full object-cover" />
         <div className="flex-1 min-w-0">
           <p className="font-semibold text-[15px] truncate">{profile.name}</p>
           <p className="text-[12px] text-white/60 truncate">{profile.distance}</p>
@@ -97,7 +96,7 @@ export default function Chat() {
               if (e.key === 'Enter') handleSend();
             }}
             placeholder="Type a message"
-            className="flex-1 bg-transparent text-white placeholder:text-white/40 outline-none text-[15px] py-1.5"
+            className="flex-1 bg-transparent text-white placeholder:text-white/40 outline-none text-base py-1.5"
           />
           <button
             onClick={handleSend}

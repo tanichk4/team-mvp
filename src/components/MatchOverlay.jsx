@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
+import Avatar from './Avatar';
 
 export default function MatchOverlay({ profile, me, open, onClose }) {
   const navigate = useNavigate();
@@ -42,14 +43,17 @@ export default function MatchOverlay({ profile, me, open, onClose }) {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.15, type: 'spring', stiffness: 200, damping: 18 }}
             >
-              <img
+              <Avatar
                 src={me}
+                name="You"
                 alt="you"
+                loading="eager"
                 className="w-32 h-32 rounded-full object-cover border-4 border-white shadow-xl -rotate-6"
               />
-              <img
+              <Avatar
                 src={profile.photos[0]}
-                alt={profile.name}
+                name={profile.name}
+                loading="eager"
                 className="w-32 h-32 rounded-full object-cover border-4 border-white shadow-xl rotate-6"
               />
             </motion.div>

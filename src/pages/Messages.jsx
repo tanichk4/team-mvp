@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Search, Sparkles } from 'lucide-react';
 import { useApp } from '../context/AppContext';
+import Avatar from '../components/Avatar';
 
 function formatTimestamp(ts) {
   const diff = Date.now() - ts;
@@ -37,9 +38,9 @@ export default function Messages() {
               className="shrink-0 w-[72px] flex flex-col items-center gap-1.5"
             >
               <div className={`w-[72px] h-[72px] rounded-full p-[2px] ${unread[m.id] ? 'bg-tinder-gradient' : 'bg-transparent'}`}>
-                <img
+                <Avatar
                   src={m.photos[0]}
-                  alt={m.name}
+                  name={m.name}
                   className="w-full h-full rounded-full object-cover border-2 border-white"
                 />
               </div>
@@ -76,9 +77,9 @@ export default function Messages() {
             return (
               <li key={m.id}>
                 <Link to={`/messages/${m.id}`} className="flex items-center gap-3 py-3 active:bg-gray-50">
-                  <img
+                  <Avatar
                     src={m.photos[0]}
-                    alt={m.name}
+                    name={m.name}
                     className="w-14 h-14 rounded-full object-cover shrink-0"
                   />
                   <div className="flex-1 min-w-0">

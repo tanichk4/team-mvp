@@ -1,12 +1,6 @@
 import { Settings, Bell, Shield, HelpCircle, LogOut, ChevronRight, Plus, Pencil } from 'lucide-react';
-
-const ME = {
-  name: 'Tanya',
-  age: 27,
-  photo: 'https://picsum.photos/600/800?random=99',
-  completeness: 65,
-  bio: 'PM by day, swiping for product insights by night 😉',
-};
+import { useApp } from '../context/AppContext';
+import Avatar from '../components/Avatar';
 
 const settingsRows = [
   { Icon: Settings, label: 'Discovery Settings', sub: 'Distance, age, who to show' },
@@ -16,11 +10,18 @@ const settingsRows = [
 ];
 
 export default function Profile() {
+  const { me } = useApp();
+
   return (
     <div className="w-full max-w-2xl mx-auto pb-6">
       {/* Hero */}
       <div className="relative w-full aspect-[4/5] md:aspect-[16/9] md:rounded-b-3xl overflow-hidden">
-        <img src={ME.photo} alt={ME.name} className="absolute inset-0 w-full h-full object-cover" />
+        <Avatar
+          src={me.photo}
+          name={me.name}
+          loading="eager"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
         <button
           aria-label="Edit profile"
@@ -30,10 +31,10 @@ export default function Profile() {
         </button>
         <div className="absolute bottom-0 left-0 right-0 p-5 text-white">
           <div className="flex items-baseline gap-2">
-            <h1 className="text-3xl font-bold">{ME.name}</h1>
-            <span className="text-2xl font-light">{ME.age}</span>
+            <h1 className="text-3xl font-bold">{me.name}</h1>
+            <span className="text-2xl font-light">{me.age}</span>
           </div>
-          <p className="text-sm text-white/85 mt-1">{ME.bio}</p>
+          <p className="text-sm text-white/85 mt-1">{me.bio}</p>
         </div>
       </div>
 
@@ -41,12 +42,12 @@ export default function Profile() {
       <div className="mx-4 mt-5 p-4 bg-white rounded-2xl shadow-sm">
         <div className="flex items-center justify-between mb-2">
           <p className="font-semibold text-[14px]">Profile completeness</p>
-          <span className="text-[14px] font-bold text-tinder-pink">{ME.completeness}%</span>
+          <span className="text-[14px] font-bold text-tinder-pink">{me.completeness}%</span>
         </div>
         <div className="w-full h-2 bg-gray-100 rounded-full overflow-hidden">
           <div
             className="h-full bg-tinder-gradient rounded-full"
-            style={{ width: `${ME.completeness}%` }}
+            style={{ width: `${me.completeness}%` }}
           />
         </div>
         <p className="text-[12px] text-tinder-muted mt-2">
@@ -62,8 +63,12 @@ export default function Profile() {
             <div key={i} className="aspect-[3/4] rounded-xl overflow-hidden bg-gray-100">
               <img
                 src={`https://picsum.photos/200/300?random=10${i}`}
-                alt=""
-                className="w-full h-full object-cover"
+                alt={`${me.name}'s photo ${i}`}
+                loading="lazy"
+                onError={(e) => {
+                  e.currentTarget.style.visibility = 'hidden';
+                }}
+                className="w-full h-full object-cover bg-gradient-to-br from-tinder-pink to-tinder-orange"
               />
             </div>
           ))}
