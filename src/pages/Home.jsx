@@ -40,9 +40,20 @@ export default function Home() {
   return (
     <div className="flex w-full h-[calc(100dvh-64px)] md:h-screen">
       <section className="flex-1 min-w-0 flex flex-col items-center px-4 pt-3 pb-4 md:pt-6 md:pb-8">
-        <div className="w-full max-w-md flex items-center justify-between mb-3 md:hidden">
-          <TinderLogo size={28} />
-          <div />
+        <div
+          className="w-full max-w-md flex items-center justify-between mb-3 md:hidden surface-nav rounded-2xl px-3 py-2"
+          style={{ height: 'var(--nav-height-top)' }}
+        >
+          <TinderLogo size={26} withWordmark={false} />
+          <TinderLogo size={20} withWordmark={true} />
+          <div className="flex items-center gap-2">
+            <button aria-label="Notifications" className="p-1.5">
+              <Bell size={22} strokeWidth={1.5} style={{ color: 'var(--color-text-primary)' }} />
+            </button>
+            <button aria-label="Filters" className="p-1.5">
+              <SlidersHorizontal size={22} strokeWidth={1.5} style={{ color: 'var(--color-text-primary)' }} />
+            </button>
+          </div>
         </div>
 
         <div className="relative flex-1 w-full max-w-md min-h-0" style={{ aspectRatio: '3 / 4' }}>

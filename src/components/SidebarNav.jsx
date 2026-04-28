@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { Flame, Star, MessageCircle, User } from 'lucide-react';
+import { Flame, Star, MessageCircle, User, Settings } from 'lucide-react';
 import TinderLogo from './TinderLogo';
 import { cn } from '../lib/cn';
 
@@ -10,36 +10,75 @@ const items = [
   { to: '/profile', label: 'Profile', Icon: User, match: (p) => p.startsWith('/profile') },
 ];
 
+function NavIcon({ Icon, active, size = 26 }) {
+  const id = `sidebar-grad-${Icon.displayName || size}-${Math.random().toString(36).slice(2, 7)}`;
+  if (!active) {
+    return (
+      <Icon size={size} strokeWidth={1.5} style={{ color: 'var(--color-text-secondary)' }} />
+    );
+  }
+  return (
+    <span className="relative inline-flex">
+      <svg width="0" height="0" style={{ position: 'absolute' }} aria-hidden>
+        <defs>
+          <linearGradient id={id} x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stopColor="var(--color-brand-primary)" />
+            <stop offset="100%" stopColor="var(--color-brand-secondary)" />
+          </linearGradient>
+        </defs>
+      </svg>
+      <Icon size={size} strokeWidth={1.5} style={{ stroke: `url(#${id})`, fill: `url(#${id})` }} />
+    </span>
+  );
+}
+
 export default function SidebarNav() {
   const { pathname } = useLocation();
   return (
-    <aside className="hidden md:flex w-[240px] shrink-0 flex-col border-r border-gray-200 bg-white px-4 py-6">
-      <div className="px-3 mb-8">
-        <TinderLogo size={32} />
+    <aside
+      className="hidden md:flex shrink-0 flex-col items-stretch py-5 group transition-[width] duration-300 ease-out"
+      style={{
+        width: 'var(--sidebar-width)',
+        borderRight: '1px solid var(--color-border-light)',
+        backgroundColor: 'var(--color-surface-card)',
+      }}
+    >
+      <div className="flex items-center justify-center mb-8 px-3">
+        <TinderLogo size={32} withWordmark={false} />
       </div>
-      <nav className="flex flex-col gap-1">
+      <nav className="flex flex-col gap-1 px-3">
         {items.map(({ to, label, Icon, match }) => {
           const isActive = match(pathname);
           return (
             <Link
               key={to}
               to={to}
+              aria-label={label}
               className={cn(
-                'flex items-center gap-3 rounded-xl px-3 py-2.5 text-[15px] font-semibold transition-colors',
-                isActive ? 'bg-tinder-gradient text-white' : 'text-tinder-text hover:bg-gray-100'
+                'flex items-center justify-center gap-3 rounded-xl px-3 py-3 transition-colors',
+                isActive ? 'bg-bg-secondary' : 'hover:bg-bg-secondary'
               )}
             >
-              <Icon
-                size={22}
-                strokeWidth={2.4}
-                className={isActive ? 'text-white' : 'text-tinder-pink'}
-              />
-              {label}
+              <NavIcon Icon={Icon} active={isActive} size={26} />
+              <span
+                className={cn(
+                  'hidden font-semibold',
+                  isActive ? 'text-brand-gradient' : ''
+                )}
+                style={{
+                  fontSize: 'var(--font-size-base)',
+                  color: isActive ? undefined : 'var(--color-text-primary)',
+                }}
+              >
+                {label}
+              </span>
             </Link>
           );
         })}
       </nav>
-      <div className="mt-auto px-3 text-xs text-tinder-muted">© tinder clone</div>
+      <div className="mt-auto px-3 flex items-center justify-center">
+        <Settings size={22} strokeWidth={1.5} style={{ color: 'var(--color-text-tertiary)' }} />
+      </div>
     </aside>
   );
 }

@@ -1,0 +1,184 @@
+/* ============================================================
+   Obsidian Design System — Tinder 2025/2026
+   Tokens are exposed BOTH as CSS custom properties (var(--x))
+   AND as Tailwind v4 utility classes (via @theme block).
+   ============================================================ */
+
+@theme {
+  /* === BRAND COLORS === */
+  --color-brand-primary: #FD267A;
+  --color-brand-secondary: #FF6036;
+  --color-white: #FFFFFF;
+  --color-black: #000000;
+
+  /* === SEMANTIC — LIGHT MODE === */
+  --color-bg-primary: #FFFFFF;
+  --color-bg-secondary: #F7F7F7;
+  --color-bg-tertiary: #EFEFEF;
+
+  --color-text-primary: #21243D;
+  --color-text-secondary: #666666;
+  --color-text-tertiary: #999999;
+  --color-text-on-brand: #FFFFFF;
+
+  --color-border-light: rgba(0, 0, 0, 0.08);
+  --color-border-medium: rgba(0, 0, 0, 0.15);
+
+  --color-surface-card: #FFFFFF;
+  --color-surface-nav: rgba(255, 255, 255, 0.96);
+
+  /* === ACTION COLORS === */
+  --color-like: #44D77A;
+  --color-nope: #F5475B;
+  --color-superlike: #37BEFF;
+  --color-boost: #A05CF5;
+  --color-rewind: #F5A623;
+
+  /* === GOLD === */
+  --color-gold-light: #F5D380;
+  --color-gold: #E8B14C;
+  --color-gold-dark: #CBA85C;
+
+  /* === FONT FAMILIES (Tailwind: font-sans, font-display) === */
+  --font-sans: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Nunito', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* === FONT SIZES (Tailwind: text-xs, text-sm, ...) === */
+  --text-xs: 11px;
+  --text-sm: 13px;
+  --text-base: 15px;
+  --text-md: 17px;
+  --text-lg: 20px;
+  --text-xl: 24px;
+  --text-2xl: 28px;
+  --text-3xl: 34px;
+
+  /* === FONT WEIGHTS (Tailwind: font-regular, font-medium, ...) === */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+
+  /* === LINE HEIGHTS (Tailwind: leading-tight, leading-normal, leading-relaxed) === */
+  --leading-tight: 1.2;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.7;
+
+  /* === LETTER SPACING (Tailwind: tracking-tight, tracking-normal, tracking-wide, tracking-wider) === */
+  --tracking-tight: -0.3px;
+  --tracking-normal: 0;
+  --tracking-wide: 0.3px;
+  --tracking-wider: 0.8px;
+
+  /* === BORDER RADIUS (Tailwind: rounded-sm, rounded-md, ...) === */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-2xl: 24px;
+  --radius-pill: 999px;
+
+  /* === SHADOWS (Tailwind: shadow-card, shadow-card-hover, ...) === */
+  --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.10);
+  --shadow-card-hover: 0 8px 30px rgba(0, 0, 0, 0.15);
+  --shadow-action-btn: 0 2px 12px rgba(0, 0, 0, 0.12);
+  --shadow-nav: 0 -1px 0 rgba(0, 0, 0, 0.06);
+  --shadow-modal: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+/* ============================================================
+   PLAIN CSS VARIABLES (consumed via var(), not Tailwind utilities)
+   ============================================================ */
+
+:root {
+  /* === GRADIENTS === */
+  --gradient-brand: linear-gradient(to right, #FD267A, #FF6036);
+  --gradient-brand-vertical: linear-gradient(to bottom, #FD267A, #FF6036);
+  --gradient-brand-diagonal: linear-gradient(135deg, #FD267A, #FF6036);
+  --gradient-gold: linear-gradient(135deg, #E8B14C, #F5D380, #CBA85C);
+  --gradient-card-overlay: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 40%, transparent 70%);
+
+  /* === OVERLAY === */
+  --color-bg-overlay: rgba(0, 0, 0, 0.5);
+
+  /* === SPACING (direct var() use) === */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  /* === FONT SIZE / WEIGHT / SPACING aliases (matches user spec verbatim) === */
+  --font-family-primary: var(--font-sans);
+  --font-family-display: var(--font-display);
+  --font-size-xs: var(--text-xs);
+  --font-size-sm: var(--text-sm);
+  --font-size-base: var(--text-base);
+  --font-size-md: var(--text-md);
+  --font-size-lg: var(--text-lg);
+  --font-size-xl: var(--text-xl);
+  --font-size-2xl: var(--text-2xl);
+  --font-size-3xl: var(--text-3xl);
+  --line-height-tight: var(--leading-tight);
+  --line-height-normal: var(--leading-normal);
+  --line-height-relaxed: var(--leading-relaxed);
+  --letter-spacing-tight: var(--tracking-tight);
+  --letter-spacing-normal: var(--tracking-normal);
+  --letter-spacing-wide: var(--tracking-wide);
+  --letter-spacing-wider: var(--tracking-wider);
+
+  /* === TRANSITIONS === */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 400ms ease;
+  --transition-spring: 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* === LAYOUT === */
+  --nav-height-bottom: 64px;
+  --nav-height-top: 56px;
+  --card-max-width: 360px;
+  --sidebar-width: 96px;
+  --sidebar-width-expanded: 320px;
+  --content-max-width: 480px;
+
+  /* === Z-INDEX === */
+  --z-card: 10;
+  --z-overlay: 100;
+  --z-nav: 200;
+  --z-modal: 300;
+  --z-toast: 400;
+
+  /* === DARK-MODE RAW VALUES (referenced by .dark overrides below) === */
+  --color-dm-bg-primary: #111111;
+  --color-dm-bg-secondary: #1C1C1C;
+  --color-dm-bg-card: #1E1E1E;
+  --color-dm-surface-nav: rgba(17, 17, 17, 0.96);
+  --color-dm-text-primary: #FFFFFF;
+  --color-dm-text-secondary: #A0A0A0;
+  --color-dm-border: rgba(255, 255, 255, 0.08);
+  --color-dm-chat-bubble-sent: #FD267A;
+  --color-dm-chat-bubble-received: #2C2C2C;
+}
+
+/* ============================================================
+   DARK MODE — overrides semantic tokens when .dark is present
+   ============================================================ */
+
+.dark {
+  --color-bg-primary: #111111;
+  --color-bg-secondary: #1C1C1C;
+  --color-bg-tertiary: #2C2C2C;
+  --color-surface-card: #1E1E1E;
+  --color-surface-nav: rgba(17, 17, 17, 0.96);
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #A0A0A0;
+  --color-text-tertiary: #777777;
+  --color-border-light: rgba(255, 255, 255, 0.08);
+  --color-border-medium: rgba(255, 255, 255, 0.15);
+}

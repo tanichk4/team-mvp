@@ -7,8 +7,8 @@ export default function TinderLogo({ size = 28, withWordmark = true }) {
       <svg width="0" height="0" style={{ position: 'absolute' }} aria-hidden>
         <defs>
           <linearGradient id={gradId} x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stopColor="#FD267A" />
-            <stop offset="100%" stopColor="#FF6036" />
+            <stop offset="0%" stopColor="var(--color-brand-primary)" />
+            <stop offset="100%" stopColor="var(--color-brand-secondary)" />
           </linearGradient>
         </defs>
       </svg>
@@ -19,8 +19,8 @@ export default function TinderLogo({ size = 28, withWordmark = true }) {
       />
       {withWordmark && (
         <span
-          className="text-tinder-gradient font-bold tracking-tight italic"
-          style={{ fontSize: size * 1.05, lineHeight: 1 }}
+          className="text-brand-gradient font-extrabold tracking-tight"
+          style={{ fontSize: size * 1.05, lineHeight: 1, letterSpacing: 'var(--letter-spacing-tight)' }}
         >
           tinder
         </span>
