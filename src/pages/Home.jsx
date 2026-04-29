@@ -1,10 +1,11 @@
-import { useState } from 'react';
-import profiles from '../data/profiles';
-import CardStack from '../components/CardStack';
-import ActionButtons from '../components/ActionButtons';
-import MatchOverlay from '../components/MatchOverlay';
-import TinderLogo from '../components/TinderLogo';
-import { useApp } from '../context/AppContext';
+import { useState } from "react";
+import profiles from "../data/profiles";
+import CardStack from "../components/CardStack";
+import ActionButtons from "../components/ActionButtons";
+import MatchOverlay from "../components/MatchOverlay";
+import TinderLogo from "../components/TinderLogo";
+import { useApp } from "../context/AppContext";
+import { Bell, SlidersHorizontal } from "lucide-react";
 
 const MATCH_PROBABILITY = 0.7;
 
@@ -19,7 +20,7 @@ export default function Home() {
   const handleSwipe = (direction, profile) => {
     setHistory((h) => [...h, profile]);
     setDeck((d) => d.slice(1));
-    if (direction === 'right' && Math.random() < MATCH_PROBABILITY) {
+    if (direction === "right" && Math.random() < MATCH_PROBABILITY) {
       addMatch(profile);
       setMatchProfile(profile);
     }
@@ -42,37 +43,48 @@ export default function Home() {
       <section className="flex-1 min-w-0 flex flex-col items-center px-4 pt-3 pb-4 md:pt-6 md:pb-8">
         <div
           className="w-full max-w-md flex items-center justify-between mb-3 md:hidden surface-nav rounded-2xl px-3 py-2"
-          style={{ height: 'var(--nav-height-top)' }}
+          style={{ height: "var(--nav-height-top)" }}
         >
           <TinderLogo size={26} withWordmark={false} />
           <TinderLogo size={20} withWordmark={true} />
           <div className="flex items-center gap-2">
             <button aria-label="Notifications" className="p-1.5">
-              <Bell size={22} strokeWidth={1.5} style={{ color: 'var(--color-text-primary)' }} />
+              <Bell
+                size={22}
+                strokeWidth={1.5}
+                style={{ color: "var(--color-text-primary)" }}
+              />
             </button>
             <button aria-label="Filters" className="p-1.5">
-              <SlidersHorizontal size={22} strokeWidth={1.5} style={{ color: 'var(--color-text-primary)' }} />
+              <SlidersHorizontal
+                size={22}
+                strokeWidth={1.5}
+                style={{ color: "var(--color-text-primary)" }}
+              />
             </button>
           </div>
         </div>
 
-        <div className="relative flex-1 w-full max-w-md min-h-0" style={{ aspectRatio: '3 / 4' }}>
+        <div
+          className="relative flex-1 w-full max-w-md min-h-0"
+          style={{ aspectRatio: "3 / 4" }}
+        >
           <CardStack deck={deck} onSwipe={handleSwipe} />
         </div>
 
         <div className="mt-4 md:mt-6 shrink-0">
           <ActionButtons
             onRewind={rewind}
-            onNope={() => triggerSwipe('left')}
-            onSuperLike={() => triggerSwipe('right')}
-            onLike={() => triggerSwipe('right')}
+            onNope={() => triggerSwipe("left")}
+            onSuperLike={() => triggerSwipe("right")}
+            onLike={() => triggerSwipe("right")}
             onBoost={() => {}}
           />
         </div>
       </section>
 
       <MatchOverlay
-        key={matchProfile?.id ?? 'closed'}
+        key={matchProfile?.id ?? "closed"}
         profile={matchProfile}
         me={me.photo}
         open={!!matchProfile}
